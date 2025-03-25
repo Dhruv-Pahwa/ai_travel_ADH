@@ -22,12 +22,14 @@ const AlltripsCard = ({ trip }) => {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    trip && getCityInfo();
-  }, [trip]);
+  const getUrl = (name) => {
+    return PHOTO_URL(name);
+    // return PHOTO_URL.replace("{replace}", name);
+  };
 
   useEffect(() => {
-    const url = PHOTO_URL.replace("{replace}", photos);
+    const url = PHOTO_URL(photos);
+    // const url = PHOTO_URL.replace("{replace}", photos);
     setUrl(url);
   }, [photos]);
 
