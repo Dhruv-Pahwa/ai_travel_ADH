@@ -72,18 +72,40 @@ function PopularPlans() {
   ];
 
   return (
-    
-    <div className="popular-plans py-10 px-5 md:px-20 text-center">
-      <h2 className="font-black text-3xl md:text-5xl bg-gradient-to-b from-primary/90 to-primary/60 bg-clip-text text-transparent mb-10">Popular Plans</h2>
+    <div id="popular-plans" className="popular-plans py-10 px-5 md:px-20 text-center scroll-mt-16">
+      
+      {/* Title with dark mode gradient */}
+      <h2 className="font-black text-3xl md:text-5xl bg-gradient-to-b from-primary/90 to-primary/60 bg-clip-text text-transparent dark:bg-gradient-to-b dark:from-white dark:to-gray-300 mb-10">
+        Popular Plans
+      </h2>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {plans.map((plan, index) => (
-          <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img src={plan.img} alt={plan.name} className="w-full h-60 object-cover" />
+          <div 
+            key={index} 
+            className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          >
+            {/* Image hover effect for pop-out animation */}
+            <div className="overflow-hidden">
+              <img 
+                src={plan.img} 
+                alt={plan.name} 
+                className="w-full h-60 object-cover transform transition duration-500 hover:scale-110 hover:shadow-lg"
+              />
+            </div>
+
             <div className="p-4">
-              <h3 className="text-xl font-semibold">{plan.name}</h3>
-              <p className="text-gray-600 mt-2">{plan.description}</p>
-              <Link to={plan.name === "Maha Kumbh" ? "/public/mahakumbh.html" : plan.name === "Rio Carnival" ? "/public/rio.html" : plan.name === "La Tomatina" ? "/public/latomatina.html" : `/plans/${plan.name.toLowerCase().replace(/\s+/g, "-")}.html`} target="_blank" rel="noopener noreferrer">
-                <Button className="mt-4">Explore Plan</Button>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{plan.name}</h3>
+              <p className="text-gray-600 dark:text-gray-300 mt-2">{plan.description}</p>
+
+              <Link 
+                to={plan.name === "Maha Kumbh" ? "/public/mahakumbh.html" : plan.name === "Rio Carnival" ? "/public/rio.html" : plan.name === "La Tomatina" ? "/public/latomatina.html" : `/plans/${plan.name.toLowerCase().replace(/\s+/g, "-")}.html`}
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button className="mt-4 bg-primary text-white dark:bg-black dark:text-white transition-all duration-300 hover:scale-105">
+                  Explore Plan
+                </Button>
               </Link>
             </div>
           </div>
